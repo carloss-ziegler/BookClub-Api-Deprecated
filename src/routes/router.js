@@ -24,6 +24,8 @@ router.put(
 
 // Users
 router.get("/users", usersController.getAllUsers);
-router.post("/auth/register", authController.createUser);
-router.post("/auth", authController.signUser);
 router.delete("/users/:userId", usersController.deleteUser);
+
+// Auth
+router.post("/auth/register", authController.createUser);
+router.post("/auth/login", authController.signUser);

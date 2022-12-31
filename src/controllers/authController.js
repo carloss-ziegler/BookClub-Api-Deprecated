@@ -1,5 +1,9 @@
 import { connection } from "../models/connection.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const createUser = async (req, res) => {
   //CHECK USER IF EXISTS
@@ -36,9 +40,28 @@ const createUser = async (req, res) => {
 };
 
 const signUser = async (req, res) => {
-  const signedUser = await usersModel.signUser(req.body);
+  const q = "SELECT * FROM users WHERE username = ?";
 
-  return res.status(200).json("Usuário conectado!" + signedUser);
+  const [rows] = await connection.execute(q, [req.body.username]);
+
+  if (rows.length === 0) return res.status(404).json("User not found!");
+
+  const checkPassword = bcrypt.compareSync(req.body.password, rows[0].password);
+  if (!checkPassword)
+    return res.status(400).json("Wrong Password or username!");
+
+  const token = jwt.sign({ id: rows[0].id }, process.env.JWT_SECRET_KEY);
+
+  console.log(process.env.JWT_SECRET_KEY);
+
+  const { password, ...others } = rows[0];
+
+  res
+    .cookie("accessToken", token, {
+      httpOnly: true,
+    })
+    .status(200)
+    .json(others);
 };
 
 const signOut = async (req, res) => {};

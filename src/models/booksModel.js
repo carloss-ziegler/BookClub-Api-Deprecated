@@ -16,10 +16,10 @@ const addBook = async (book) => {
   return { insertId: createdBook.insertId };
 };
 
-const deleteBook = async (idbooks) => {
+const deleteBook = async (bookId) => {
   const [deletedBook] = await connection.execute(
-    "DELETE FROM books WHERE idbooks = ?",
-    [idbooks]
+    "DELETE FROM books WHERE id = ?",
+    [bookId]
   );
 
   return deletedBook;

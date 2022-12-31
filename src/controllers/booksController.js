@@ -12,16 +12,16 @@ const addBook = async (req, res) => {
 };
 
 const deleteBook = async (req, res) => {
-  const { idbooks } = req.params;
+  const { bookId } = req.params;
 
-  await booksModel.deleteBook(idbooks);
+  await booksModel.deleteBook(bookId);
   return res.status(204).json();
 };
 
 const updateBook = async (req, res) => {
-  const { idbooks } = req.params;
+  const { bookId } = req.params;
 
-  await booksModel.updateBook(idbooks, req.body);
+  await booksModel.updateBook(bookId, req.body);
 
   return res.status(204).json();
 };

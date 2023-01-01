@@ -17,23 +17,23 @@ const addBook = async (book) => {
 };
 
 const deleteBook = async (bookId) => {
-  const [deletedBook] = await connection.execute(
-    "DELETE FROM books WHERE id = ?",
+  const [deletedBook] = await connection.query(
+    "DELETE FROM books WHERE bookid = ?",
     [bookId]
   );
 
   return deletedBook;
 };
 
-const updateBook = async (idbooks, book) => {
+const updateBook = async (bookId, book) => {
   const { title, author, stars, thumbnail } = book;
 
   const [updatedBook] = await connection.execute(
-    "UPDATE books SET title = ?, author = ?, stars = ?, thumbnail = ? WHERE idbooks = ?",
-    [title, author, stars, thumbnail, idbooks]
+    "UPDATE books SET title = ?, author = ?, stars = ?, thumbnail = ? WHERE id = ?",
+    [title, author, stars, thumbnail, bookId]
   );
 
-  return updateBook;
+  return updatedBook;
 };
 
 export default { getAllBooks, addBook, deleteBook, updateBook };

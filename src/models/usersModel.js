@@ -5,6 +5,23 @@ const getAllUsers = async () => {
   return users;
 };
 
+const getUserById = async (userId) => {
+  const [user] = await connection.query(
+    `SELECT * FROM users WHERE id = ${userId}`
+  );
+
+  return user;
+};
+
+const updateUser = async (userId, user) => {
+  const { name, email, country } = user;
+
+  const [updatedUser] = await connection.query(
+    "UPDATE users SET name = ?, email = ?, country = ? WHERE id = ?",
+    [name, email, country, userId]
+  );
+};
+
 const deleteUser = async (userId) => {
   const [deletedUser] = await connection.execute(
     "DELETE FROM users WHERE id = ?",
@@ -14,4 +31,4 @@ const deleteUser = async (userId) => {
   return deletedUser;
 };
 
-export default { getAllUsers, deleteUser };
+export default { getAllUsers, getUserById, updateUser, deleteUser };

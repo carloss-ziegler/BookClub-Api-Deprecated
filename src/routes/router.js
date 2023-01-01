@@ -29,3 +29,4 @@ router.delete("/users/:userId", usersController.deleteUser);
 // Auth
 router.post("/auth/register", authController.createUser);
 router.post("/auth/login", authController.signUser);
+router.post("/auth/logout", authController.signOut);

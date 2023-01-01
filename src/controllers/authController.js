@@ -64,6 +64,14 @@ const signUser = async (req, res) => {
     .json(others);
 };
 
-const signOut = async (req, res) => {};
+const signOut = async (req, res) => {
+  res
+    .clearCookie("accessToken", {
+      secure: true,
+      sameSite: "none",
+    })
+    .status(200)
+    .json("User has been disconnected");
+};
 
 export default { createUser, signUser, signOut };

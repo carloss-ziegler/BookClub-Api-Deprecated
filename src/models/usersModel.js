@@ -24,13 +24,4 @@ const updateUser = async (userId, user) => {
   return [updatedUser];
 };
 
-const deleteUser = async (userId) => {
-  const [deletedUser] = await connection.execute(
-    "DELETE FROM users WHERE id = ?",
-    [userId]
-  );
-
-  return deletedUser;
-};
-
-export default { getAllUsers, getUserById, updateUser, deleteUser };
+export default { getAllUsers, getUserById, updateUser };

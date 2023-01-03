@@ -32,7 +32,7 @@ router.get("/books/:bookId", booksController.getSingleBook);
 router.get("/users", usersController.getAllUsers);
 router.get("/users/:userId", usersController.getUserById);
 router.put("/users/:userId", usersController.updateUser);
-router.delete("/users/:userId", usersController.deleteUser);
+router.delete("/users/:id", usersController.deleteUser);
 
 // Auth
 router.post("/auth/register", authController.createUser);

@@ -1,4 +1,5 @@
 import usersModel from "../models/usersModel.js";
+import { connection } from "../models/connection.js";
 
 const getAllUsers = async (_req, res) => {
   const users = await usersModel.getAllUsers();
@@ -21,10 +22,13 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const { userId } = req.params;
+  const q = "DELETE FROM users WHERE id = ?";
 
-  await usersModel.deleteUser(userId);
-  return res.status(204).json();
+  const [rows] = await connection.query(q, [req.params.id], (err, data) => {
+    if (err) return res.status(500).json(err);
+  });
+
+  return res.status(204).json("Deletado!");
 };
 
 export default { getAllUsers, getUserById, updateUser, deleteUser };

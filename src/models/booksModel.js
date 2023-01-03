@@ -5,6 +5,13 @@ const getAllBooks = async () => {
   return books;
 };
 
+const getSingleBook = async (bookId) => {
+  const [book] = await connection.query("SELECT * FROM books WHERE id = ?", [
+    bookId,
+  ]);
+  return book;
+};
+
 const addBook = async (book) => {
   const { title, author, stars, thumbnail } = book;
 
@@ -36,4 +43,4 @@ const updateBook = async (bookId, book) => {
   return updatedBook;
 };
 
-export default { getAllBooks, addBook, deleteBook, updateBook };
+export default { getAllBooks, getSingleBook, addBook, deleteBook, updateBook };

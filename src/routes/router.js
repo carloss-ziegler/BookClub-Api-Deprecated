@@ -10,8 +10,8 @@ import usersController from "../controllers/usersController.js";
 // Auth
 import authController from "../controllers/authController.js";
 
-//Cards
-import cardController from "../controllers/cardController.js";
+//Favorites
+import favoritesController from "../controllers/favoritesController.js";
 
 export const router = express.Router();
 
@@ -20,6 +20,7 @@ router.get("/books", booksController.getAllBooks);
 router.post("/books", booksMiddleware.validateBody, booksController.addBook);
 router.delete("/books/:idbooks", booksController.deleteBook);
 router.put("/books/:bookId", booksController.updateBook);
+router.get("/books/:bookId", booksController.getSingleBook);
 
 // Users
 router.get("/users", usersController.getAllUsers);
@@ -32,5 +33,7 @@ router.post("/auth/register", authController.createUser);
 router.post("/auth/login", authController.signUser);
 router.post("/auth/logout", authController.signOut);
 
-// Cards
-router.get("/users/:userId/cards", cardController.getAllCards);
+// Favorites
+router.get("/favorites", favoritesController.getFavorites);
+router.post("/favorites", favoritesController.setFavorites);
+router.delete("/favorites", favoritesController.removeFavorite);

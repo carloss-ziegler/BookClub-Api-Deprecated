@@ -20,6 +20,8 @@ const updateUser = async (userId, user) => {
     "UPDATE users SET name = ?, email = ?, country = ? WHERE id = ?",
     [name, email, country, userId]
   );
+
+  return [updatedUser];
 };
 
 const deleteUser = async (userId) => {

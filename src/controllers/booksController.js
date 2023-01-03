@@ -6,6 +6,12 @@ const getAllBooks = async (_req, res) => {
   return res.status(200).json(books);
 };
 
+const getSingleBook = async (req, res) => {
+  const book = await booksModel.getSingleBook(req.query);
+
+  return res.status(200).json(book);
+};
+
 const addBook = async (req, res) => {
   const createdBook = await booksModel.addBook(req.body);
   return res.status(201).json(createdBook);
@@ -26,4 +32,4 @@ const updateBook = async (req, res) => {
   return res.status(204).json();
 };
 
-export default { getAllBooks, addBook, deleteBook, updateBook };
+export default { getAllBooks, getSingleBook, addBook, deleteBook, updateBook };

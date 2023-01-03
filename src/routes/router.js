@@ -13,6 +13,12 @@ import authController from "../controllers/authController.js";
 //Favorites
 import favoritesController from "../controllers/favoritesController.js";
 
+// Notifications
+import notificationsController from "../controllers/notificationsController.js";
+
+// Cards
+import cardController from "../controllers/cardController.js";
+
 export const router = express.Router();
 
 // Books
@@ -37,3 +43,14 @@ router.post("/auth/logout", authController.signOut);
 router.get("/favorites", favoritesController.getFavorites);
 router.post("/favorites", favoritesController.setFavorites);
 router.delete("/favorites", favoritesController.removeFavorite);
+
+// Notifications
+router.get("/notifications", notificationsController.getNotification);
+router.post("/notifications", notificationsController.addNotification);
+router.delete("/notifications", notificationsController.removeNotification);
+
+// Cards
+router.get("/cards", cardController.getCards);
+router.put("/cards", cardController.updateCard);
+router.post("/cards", cardController.addCard);
+router.delete("/cards/:id", cardController.deleteCard);

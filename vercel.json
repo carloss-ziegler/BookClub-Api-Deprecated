@@ -2,7 +2,7 @@
     "version": 2,
     "name": "book-club-api",
     "builds": [
-      { "src": "app.js", "use": "@vercel/node" }
+      { "src": "./src/app.js", "use": "@vercel/node" }
     ],
     "routes": [
       { "src": "/(.*)", "dest": "/app.js" }

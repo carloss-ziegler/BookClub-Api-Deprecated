@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://book-club-api.com"],
+    origin: ["http://localhost:3000", "https://book-club-api.onrender.com"],
   })
 );
 app.use(cookieParser());

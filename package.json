@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/app.js",
+  "files": [
+    "dist/app.js"
+  ],
   "type": "module",
   "engines": {
     "node": ">= 14.x"

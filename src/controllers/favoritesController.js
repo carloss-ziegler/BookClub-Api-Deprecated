@@ -27,7 +27,7 @@ const setFavorites = async (req, res) => {
 
   const [rows] = await connection.query(
     q,
-    [req.query.userId, req.query.bookId],
+    [req.query.userId, req.body.bookId],
     (err, data) => {
       if (err) return res.status(500).json(err);
     }
@@ -48,7 +48,7 @@ const removeFavorite = async (req, res) => {
 
   const [rows] = await connection.query(
     q,
-    [req.query.userId, req.query.bookId],
+    [req.query.userId, req.body.bookId],
     (err, data) => {
       if (err) res.status(500).json(err);
     }
